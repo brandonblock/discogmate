@@ -3,7 +3,9 @@ import requests
 import sys
 
 artist = sys.argv[1]
+artist = artist.replace(' ', '+')
 track = sys.argv[2]
+track = track.replace(' ', '+')
 key = "NUPJPAJpaqTecgraPvbn"
 secret = "SnRHtnijQNkVIdvvcPvPAygHVsrkBUoL"
 
@@ -24,15 +26,17 @@ def fetch_release_data(release_id):
 
 
 def search_releases(artist, track):
-    url = "https://api.discogs.comsearch/?type=release&artist=%s&label=&track=%s&advanced=1&key=%s&secret=%s" % (artist, track, key, secret)
+    url = "https://api.discogs.com/database/search?type=release&artist=%s&label=&track=%s&advanced=1&key=%s&secret=%s" % (artist, track, key, secret)
     response = requests.get(url)
     response.raise_for_status()
 
     resultsjson = json.loads(response.text)
+    i = 0
     for label in resultsjson['results']:
-        print resultsjson['results']
+        print(resultsjson['results'][i]['id'])
+        print(fetch_release_data(resultsjson['results'][i]['id']))
+        i += 1
 
 
-print(fetch_release_data(3681937))
 search_releases(artist, track)
 
