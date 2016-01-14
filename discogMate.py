@@ -10,8 +10,8 @@ artist = sys.argv[1]
 artist = artist.replace(' ', '+')
 track = sys.argv[2]
 track = track.replace(' ', '+')
-key = "NUPJPAJpaqTecgraPvbn"  # digirithm's Discogs user key
-secret = "SnRHtnijQNkVIdvvcPvPAygHVsrkBUoL"  # digirithm's user secret
+key = "NUPJPAJpaqTecgraPvbn"
+secret = "SnRHtnijQNkVIdvvcPvPAygHVsrkBUoL"
 rate_limit = .25  # 250 requests per minute/once every 240 milliseconds
 
 
